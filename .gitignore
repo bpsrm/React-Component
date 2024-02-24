@@ -29,7 +29,7 @@ src/assets/
 src/components/private/
 src/json/
 src/notes/
-src/router/
+src/routers/
 src/styles/
 src/views/
 
