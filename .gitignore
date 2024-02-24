@@ -33,8 +33,8 @@ src/routers/
 src/views/
 
 # Ignore unnecessary files
-main.tsx
-vite-env.d.ts
+src/main.tsx
+src/vite-env.d.ts
 .eslintrc.cjs
 index.html
 pnpm-lock.yaml
