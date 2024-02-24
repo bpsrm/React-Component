@@ -25,10 +25,5 @@ dist-ssr
  
 .env
 
-src/assets/
-src/components/private/
-src/json/
-src/notes/
-src/routers/
-src/views/
+
 

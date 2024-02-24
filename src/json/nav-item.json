@@ -1,0 +1,19 @@
+{
+  "navItem": [
+    {
+      "id": 1,
+      "name": "Forms",
+      "link": "/forms"
+    },
+    {
+      "id": 2,
+      "name": "DatePicker",
+      "link": "/date-picker"
+    },
+    {
+      "id": 3,
+      "name": "Dropdown",
+      "link": "/dropdown"
+    }
+  ]
+}
