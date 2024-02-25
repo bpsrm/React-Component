@@ -27,7 +27,7 @@
   }
 
   .title {
-    @apply pt-5;
+    @apply pt-5 text-[24px];
   }
 
   .sub-title {
@@ -53,6 +53,14 @@
 
   .link {
     @apply border-gray-main border-b-2 hover:text-violet-main delay-100 mr-3 w-fit mx-2;
+  }
+
+  .link a {
+    @apply flex items-center justify-center;
+  }
+
+  .link i {
+    @apply text-[12px] pl-1.5;
   }
 
   main {
@@ -114,4 +122,8 @@
   .btn-sub {
     @apply bg-violet-dr-main text-violet-main;
   }
+}
+
+.profile-box {
+  @apply p-3 bg-violet-dr-main rounded-[5px] text-violet-da-main;
 }

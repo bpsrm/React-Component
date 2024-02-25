@@ -1,10 +1,44 @@
+import { useEffect, useState } from "react";
+
+//router
+import { Link } from "react-router-dom";
+
 //assets
 import reactIcon from "@/assets/react.svg";
 import typescriptIcon from "@/assets/typescript.svg";
 
+//types
+import { Profile } from "@/@types/global.types";
+
 export default function RootMain() {
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [loading, setLoading] = useState(true);
+  const username = "bpsrm";
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(
+          `https://api.github.com/users/${username}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        console.log(data);
+        setProfile(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching GitHub profile:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [username]);
+
   return (
-    <div className="containers h-screen bg-white pt-10">
+    <div className="containers bg-white py-10">
       <div className="flex flex-col justify-center items-center">
         <div className="flex items-center justify-center gap-5">
           <img src={reactIcon} alt="" className="w-[25%] md:w-[10%]" />{" "}
@@ -18,6 +52,50 @@ export default function RootMain() {
           Resource for React components in TypeScript language with tailwind CSS
           style.
         </p>
+
+        <div className="card-main pad-main bg-white p-5 shadow-lg hover:shadow-xl hover:transition-all hover:ease-in-out hover:delay-200">
+          <h5 className="font-semibold text-violet-da-main">
+            <i className="fa-brands fa-github"></i> Profile
+          </h5>
+          {loading ? (
+            <div className="flex flex-col justify-center items-center h-max">
+              Loading...
+            </div>
+          ) : profile ? (
+            <Link
+              to="https://github.com/bpsrm"
+              target="_blank"
+              className="m-3 flex flex-col items-center bg-navy-dr-main p-5 rounded-[10px]"
+            >
+              <img
+                src={profile.avatar_url}
+                width={150}
+                height={150}
+                alt=""
+                className="rounded-[50%]"
+              />
+
+              <p className="title text-violet-da-main">{profile.name}</p>
+              <span className="text-black pb-2">@{profile.login}</span>
+              <span className="small-text text-gray-main">
+                <i className="fa-solid fa-location-dot"></i>
+                {profile.location}
+              </span>
+              <p className="text-black text-center w-[70%] py-5">
+                {profile.bio}
+              </p>
+              <div className="flex gap-5">
+                <p className="profile-box">
+                  Public Repos: {profile.public_repos}
+                </p>
+                <p className="profile-box">Following: {profile.following}</p>
+                <p className="profile-box">Followers: {profile.followers}</p>
+              </div>
+            </Link>
+          ) : (
+            <div>Error loading profile</div>
+          )}
+        </div>
         <p className="text-violet-main font-bold">
           Design & Develop by BANXDEV
         </p>
