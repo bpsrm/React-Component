@@ -19,14 +19,13 @@ export default function RootMain() {
       try {
         const response = await fetch("https://api.github.com/users/bpsrm", {
           headers: {
-            Authorization: "Bearer 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",
+            Authorization: "Bearer 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",
           },
         });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log(data);
         setProfile(data);
         setLoading(false);
       } catch (error) {
