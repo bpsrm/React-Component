@@ -51,13 +51,18 @@ export default function Header() {
         <nav className="fixed inset-y-0 left-0 z-50 w-[70%] shadow-md bg-white text-black md:text-white md:hidden">
           <ul className="p-4 main-link">
             <li className="link">
-              <Link to="/" className="block py-2 px-4 hover:text-violet-main">
+              <Link to="/" className="block hover:text-violet-main">
                 Home
               </Link>
             </li>
             <li className="link">
-              <Link to="/" className="block py-2 px-4 hover:text-violet-main">
-                Home
+              <Link
+                to="https://github.com/bpsrm/React-Component"
+                target="_blank"
+                className="block hover:text-violet-main"
+              >
+                Source
+                <i className="fa-solid fa-arrow-up-right-from-square"></i>
               </Link>
             </li>
 
