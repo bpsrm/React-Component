@@ -1,0 +1,7 @@
+.date-group {
+  @apply flex;
+}
+
+.label-date {
+  @apply w-full p-2 border-2 border-violet-main rounded-[5px] bg-gray-dr-main text-violet-main cursor-pointer font-bold;
+}

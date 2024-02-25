@@ -14,7 +14,7 @@ import HomePage from "@/views/Homepage";
 // form
 import MainFormTS from "@/components/forms/MainFormTS";
 //date-picker
-import DatePicker from "@/components/datePicker/DatePicker";
+import DatePicker from "@/components/datePicker/MainDatePicker";
 
 //types
 const element = createRoutesFromElements(

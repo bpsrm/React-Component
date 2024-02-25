@@ -1,3 +1,6 @@
+//style
+import "@/styles/forms.css";
+
 //forms
 import { Formik, Form } from "formik";
 import { ChangeEvent, useState } from "react";

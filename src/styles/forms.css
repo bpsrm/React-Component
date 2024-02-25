@@ -1,0 +1,11 @@
+.upload-area {
+  @apply w-full cursor-pointer rounded-[10px] border-2 border-dashed h-[250px] flex flex-col justify-center items-center;
+}
+
+.upload-area i {
+  @apply text-[48px] text-gray-main;
+}
+
+.preview-img {
+  @apply w-fit object-contain h-[250px] rounded-[10px];
+}
