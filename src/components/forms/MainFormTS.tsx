@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from "react";
 
 //components
 import UploadFile from "./UploadFile";
+import TextField from "./TextField";
 
 interface UsersTypes {
   username: string;
@@ -56,78 +57,66 @@ export default function FormTS() {
         {({ setFieldValue, values }) => (
           <Form>
             <div className="w-full md:flex md:gap-4">
-              <div className="input-group w-full md:w-1/2">
-                <label htmlFor="username" className="w-full">
-                  username
-                </label>
-                <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="John Doe"
-                  value={values.username}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setFieldValue("username", e.target.value)
-                  }
-                  required
-                />
-              </div>
-              <div className="input-group w-full md:w-1/2">
-                <label htmlFor="email" className="w-full">
-                  email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="example@example.com"
-                  value={values.email}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setFieldValue("email", e.target.value)
-                  }
-                  required
-                />
-              </div>
+              <TextField
+                groupClass="w-full md:w-1/2"
+                label="username"
+                type="text"
+                name="username"
+                id="username"
+                placeHolder="John Doe"
+                value={values.username}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setFieldValue("username", e.target.value)
+                }
+                required
+              />
+              <TextField
+                groupClass="w-full md:w-1/2"
+                label="email"
+                type="email"
+                name="email"
+                id="email"
+                placeHolder="example@example.com"
+                value={values.email}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setFieldValue("email", e.target.value)
+                }
+                required
+              />
             </div>
             <div className="lg:w-full md:flex md:gap-4 ">
-              <div className="input-group md:w-full lg:w-6/12">
-                <label htmlFor="password" className="w-full">
-                  password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder=""
-                  value={values.password}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setFieldValue("password", e.target.value)
+              <TextField
+                groupClass="md:w-full lg:w-6/12"
+                label="password"
+                type="password"
+                name="password"
+                id="password"
+                placeHolder=""
+                value={values.password}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setFieldValue("password", e.target.value)
+                }
+                required
+              />
+              <TextField
+                groupClass="md:w-full lg:w-6/12"
+                label="confirmPassword"
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                placeHolder=""
+                value={values.confirmPassword}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  const confirmPassword = e.target.value;
+                  if (confirmPassword === values.password) {
+                    setPasswordValidate("password is matched");
+                  } else {
+                    setPasswordValidate("password not matched!");
                   }
-                  required
-                />
-              </div>
-              <div className="input-group md:w-full lg:w-6/12">
-                <label htmlFor="confirmPassword" className="w-full">
-                  confirm password
-                </label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  id="confirmPassword"
-                  placeholder=""
-                  value={values.confirmPassword}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                    const confirmPassword = e.target.value;
-                    if (confirmPassword === values.password) {
-                      setPasswordValidate("password is matched");
-                    } else {
-                      setPasswordValidate("password not matched!");
-                    }
-                    setFieldValue("confirmPassword", confirmPassword);
-                  }}
-                  required
-                />
-              </div>
+                  setFieldValue("confirmPassword", confirmPassword);
+                }}
+                required
+              />
             </div>
             <div className="lg:flex lg:w-full pad-main">
               {values.confirmPassword && (
@@ -157,6 +146,7 @@ export default function FormTS() {
                 }}
               />
             </div>
+
             <div className="input-group">
               <label htmlFor="gender" className="w-full">
                 gender
@@ -209,56 +199,44 @@ export default function FormTS() {
                 </label>
               </div>
             </div>
-            <div className="input-group">
-              <label htmlFor="website" className="w-full">
-                website
-              </label>
-              <input
-                type="text"
-                name="website"
-                id="website"
-                placeholder="https://www.google.com/"
-                value={values.website}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue("website", e.target.value)
-                }
-                required
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="address" className="w-full">
-                address
-              </label>
-              <input
-                type="address"
-                name="address"
-                id="address"
-                placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis neque consequuntur rem."
-                value={values.address}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue("address", e.target.value)
-                }
-                required
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="telephone" className="w-full">
-                telephone
-              </label>
-              <input
-                type="tel"
-                name="telephone"
-                id="telephone"
-                placeholder="999-999-9999"
-                value={values.telephone}
-                maxLength={12}
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue("telephone", e.target.value)
-                }
-                required
-              />
-            </div>
+            <TextField
+              label="website"
+              type="text"
+              name="website"
+              id="website"
+              placeHolder="https://www.google.com/"
+              value={values.website}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setFieldValue("website", e.target.value)
+              }
+              required
+            />
+            <TextField
+              label="address"
+              type="address"
+              name="address"
+              id="address"
+              placeHolder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis neque consequuntur rem."
+              value={values.address}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setFieldValue("address", e.target.value)
+              }
+              required
+            />
+            <TextField
+              label="telephone"
+              type="tel"
+              name="telephone"
+              id="telephone"
+              placeHolder="999 999 9999"
+              pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
+              value={values.telephone}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setFieldValue("telephone", e.target.value)
+              }
+              required
+            />
+
             <div className="container-btn">
               <button type="submit" className="btn-base btn-main">
                 Confirm
