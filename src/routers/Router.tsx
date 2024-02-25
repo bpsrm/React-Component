@@ -12,7 +12,7 @@ import NotFoundPage from "@/views/NotFoundPage";
 import MainLayout from "@/views/MainLayout";
 import HomePage from "@/views/Homepage";
 // form
-import FormTS from "@/components/forms/FormTS";
+import MainFormTS from "@/components/forms/MainFormTS";
 
 //types
 const element = createRoutesFromElements(
@@ -20,7 +20,7 @@ const element = createRoutesFromElements(
     <Route element={<MainLayout />}>
       <Route path="*" element={<NotFoundPage />} />
       <Route index path="/" element={<HomePage />} />
-      <Route path="/forms" element={<FormTS />} />
+      <Route path="/forms" element={<MainFormTS />} />
     </Route>
   </Fragment>
 );
