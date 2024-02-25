@@ -125,5 +125,5 @@
 }
 
 .profile-box {
-  @apply p-3 bg-violet-dr-main rounded-[5px] text-violet-da-main;
+  @apply p-3 bg-violet-dr-main rounded-[5px] text-violet-da-main flex justify-center items-center;
 }

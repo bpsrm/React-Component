@@ -38,7 +38,7 @@ export default function RootMain() {
   }, [username]);
 
   return (
-    <div className="containers bg-white py-10">
+    <div className="containers bg-white py-10 md:h-svh xl:h-full">
       <div className="flex flex-col justify-center items-center">
         <div className="flex items-center justify-center gap-5">
           <img src={reactIcon} alt="" className="w-[25%] md:w-[10%]" />{" "}
@@ -81,15 +81,23 @@ export default function RootMain() {
                 <i className="fa-solid fa-location-dot"></i>
                 {profile.location}
               </span>
-              <p className="text-black text-center w-[70%] py-5">
+              <p className="text-black text-start md:text-center md:w-[70%] py-5">
                 {profile.bio}
               </p>
-              <div className="flex gap-5">
-                <p className="profile-box">
-                  Public Repos: {profile.public_repos}
-                </p>
-                <p className="profile-box">Following: {profile.following}</p>
-                <p className="profile-box">Followers: {profile.followers}</p>
+              <div className="flex flex-wrap gap-5 w-full xl:flex-nowrap">
+                <div className="w-full xl:w-4/12">
+                  <p className="profile-box w-full">
+                    Public Repos: {profile.public_repos}
+                  </p>
+                </div>
+                <div className="flex flex-col md:flex-row w-full xl:w-8/12 gap-5">
+                  <p className="profile-box sm:w-full md:w-[50%] xl:w-4/6">
+                    Following: {profile.following}
+                  </p>
+                  <p className="profile-box sm:w-full md:w-[50%] xl:w-4/6">
+                    Followers: {profile.followers}
+                  </p>
+                </div>
               </div>
             </Link>
           ) : (
