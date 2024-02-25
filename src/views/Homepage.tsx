@@ -13,14 +13,15 @@ import { Profile } from "@/@types/global.types";
 export default function RootMain() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
-  const username = "bpsrm";
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch(
-          `https://api.github.com/users/${username}`
-        );
+        const response = await fetch("https://api.github.com/users/bpsrm", {
+          headers: {
+            Authorization: "Bearer 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",
+          },
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -35,7 +36,7 @@ export default function RootMain() {
     };
 
     fetchProfile();
-  }, [username]);
+  }, []);
 
   return (
     <div className="containers bg-white py-10 md:h-svh xl:h-full">
