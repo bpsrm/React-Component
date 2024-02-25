@@ -3,5 +3,5 @@
 }
 
 .label-date {
-  @apply w-full p-2 border-2 border-violet-main rounded-[5px] bg-gray-dr-main text-violet-main cursor-pointer font-bold;
+  @apply w-full p-2 border-2 border-gray-dr-main rounded-[5px] bg-white text-violet-main cursor-pointer;
 }
