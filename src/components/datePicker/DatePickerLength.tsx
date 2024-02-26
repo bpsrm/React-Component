@@ -1,52 +1,79 @@
 import { useState } from "react";
+import Calendar from "./Calendar";
 
-export default function DatePickerLength() {
-  const [startDate, setStartDate] = useState<boolean>(false);
-  const [endDate, setEndDate] = useState<boolean>(false);
+const DatePickerLength = () => {
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [showStartCalendar, setShowStartCalendar] = useState<boolean>(false);
+  const [showEndCalendar, setShowEndCalendar] = useState<boolean>(false);
+
+  const formatDate = (date: Date | null) => {
+    return date ? (
+      <p className="text-violet-main">{date.toLocaleDateString()}</p>
+    ) : (
+      ""
+    );
+  };
+
+  const handleLabelClick = (calendarType: "start" | "end") => {
+    if (calendarType === "start") {
+      setShowStartCalendar((prev) => !prev);
+      setShowEndCalendar(false);
+    } else {
+      setShowEndCalendar((prev) => !prev);
+      setShowStartCalendar(false);
+    }
+  };
+
+  const handleSelectDate = (day: number, calendarType: "start" | "end") => {
+    const newDate = new Date();
+    newDate.setDate(day);
+    if (calendarType === "start") {
+      setStartDate(newDate);
+      setShowStartCalendar(false);
+      console.log("date length (start):", newDate.toLocaleDateString());
+    } else {
+      setEndDate(newDate);
+      setShowEndCalendar(false);
+      console.log("date length (end):", newDate.toLocaleDateString());
+    }
+  };
 
   return (
     <div>
       <div className="date-group pad-main">
-        <div className="flex w-full items-center justify-center">
-          <div className="flex flex-col lg:w-5/12">
+        <div className="md:flex w-full items-start justify-center">
+          <div className="flex flex-col w-full lg:w-5/12">
             <label
               htmlFor="start-date"
               className="label-date"
-              onClick={() => setStartDate(!startDate)}
+              onClick={() => handleLabelClick("start")}
             >
-              Start Date
-              <input
-                type="date"
-                name="start-date"
-                id="start-date"
-                className="hidden"
-              />
+              {formatDate(startDate) || "Start Date"}
             </label>
-            {startDate && <div className="calendar-container"></div>}
+            {showStartCalendar && (
+              <Calendar onSelect={(day) => handleSelectDate(day, "start")} />
+            )}
           </div>
-          <p className="lg:w-2/12 flex justify-center items-center">To</p>
-          <div className="flex flex-col lg:w-5/12">
+          <p className="w-full lg:w-2/12 flex justify-center items-center">
+            To
+          </p>
+          <div className="flex flex-col w-full lg:w-5/12">
             <label
               htmlFor="end-date"
               className="label-date"
-              onClick={() => setEndDate(!endDate)}
+              onClick={() => handleLabelClick("end")}
             >
-              End Date
-              <input
-                type="date"
-                name="end-date"
-                id="end-date"
-                className="hidden"
-              />
+              {formatDate(endDate) || "End Date"}
             </label>
-            {endDate && (
-              <div className="calendar-container">
-                {/* Show calendar for end date here */}
-              </div>
+            {showEndCalendar && (
+              <Calendar onSelect={(day) => handleSelectDate(day, "end")} />
             )}
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default DatePickerLength;

@@ -1,4 +1,5 @@
 //components
+import DatePickerNormal from "./DatePickerNormal";
 import DatePickerLength from "./DatePickerLength";
 
 //styles
@@ -17,9 +18,9 @@ export default function DatePicker() {
       <div className="w-full">
         <div className="input-group">
           <label htmlFor="date">Normal Date</label>
-          <input type="date" name="date" id="date" />
+          <DatePickerNormal />
         </div>
-        <div className="input-group">
+        <div className="input-group pad-main px-0">
           <label htmlFor="date">Date Picker Start-End</label>
           <DatePickerLength />
         </div>
