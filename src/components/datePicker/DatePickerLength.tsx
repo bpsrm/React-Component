@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+//components
 import Calendar from "./Calendar";
 
 const DatePickerLength = () => {
@@ -6,14 +8,6 @@ const DatePickerLength = () => {
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [showStartCalendar, setShowStartCalendar] = useState<boolean>(false);
   const [showEndCalendar, setShowEndCalendar] = useState<boolean>(false);
-
-  const formatDate = (date: Date | null) => {
-    return date ? (
-      <p className="text-violet-main">{date.toLocaleDateString()}</p>
-    ) : (
-      ""
-    );
-  };
 
   const handleLabelClick = (calendarType: "start" | "end") => {
     if (calendarType === "start") {
@@ -25,17 +19,15 @@ const DatePickerLength = () => {
     }
   };
 
-  const handleSelectDate = (day: number, calendarType: "start" | "end") => {
-    const newDate = new Date();
-    newDate.setDate(day);
+  const handleSelectDate = (date: Date, calendarType: "start" | "end") => {
     if (calendarType === "start") {
-      setStartDate(newDate);
+      setStartDate(date);
       setShowStartCalendar(false);
-      console.log("date length (start):", newDate.toLocaleDateString());
+      console.log("date length (start):", date.toLocaleDateString());
     } else {
-      setEndDate(newDate);
+      setEndDate(date);
       setShowEndCalendar(false);
-      console.log("date length (end):", newDate.toLocaleDateString());
+      console.log("date length (end):", date.toLocaleDateString());
     }
   };
 
@@ -49,10 +41,18 @@ const DatePickerLength = () => {
               className="label-date"
               onClick={() => handleLabelClick("start")}
             >
-              {formatDate(startDate) || "Start Date"}
+              {startDate ? (
+                <p className="text-violet-main">
+                  {startDate.toLocaleDateString()}
+                </p>
+              ) : (
+                "Start Date"
+              )}
             </label>
             {showStartCalendar && (
-              <Calendar onSelect={(day) => handleSelectDate(day, "start")} />
+              <Calendar
+                onSelectDate={(day) => handleSelectDate(day, "start")}
+              />
             )}
           </div>
           <p className="w-full lg:w-2/12 flex justify-center items-center">
@@ -64,10 +64,16 @@ const DatePickerLength = () => {
               className="label-date"
               onClick={() => handleLabelClick("end")}
             >
-              {formatDate(endDate) || "End Date"}
+              {endDate ? (
+                <p className="text-violet-main">
+                  {endDate.toLocaleDateString()}
+                </p>
+              ) : (
+                "End Date"
+              )}
             </label>
             {showEndCalendar && (
-              <Calendar onSelect={(day) => handleSelectDate(day, "end")} />
+              <Calendar onSelectDate={(day) => handleSelectDate(day, "end")} />
             )}
           </div>
         </div>

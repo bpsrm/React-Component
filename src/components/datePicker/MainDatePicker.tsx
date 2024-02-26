@@ -1,9 +1,9 @@
+//styles
+import "@/styles/datepicker.css";
+
 //components
 import DatePickerNormal from "./DatePickerNormal";
 import DatePickerLength from "./DatePickerLength";
-
-//styles
-import "@/styles/datepicker.css";
 
 export default function DatePicker() {
   return (

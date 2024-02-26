@@ -39,3 +39,7 @@
 .empty {
   @apply border-0;
 }
+
+.inp-year-calendar {
+  @apply p-2 focus-visible:border-0 focus-visible:outline-none bg-violet-dr-main rounded-[5px] text-violet-da-main;
+}
