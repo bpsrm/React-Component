@@ -14,12 +14,14 @@ export default function RootMain() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const header = import.meta.env.AUTHORIZATION;
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const response = await fetch("https://api.github.com/users/bpsrm", {
           headers: {
-            Authorization: "Bearer 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",
+            Authorization: header,
           },
         });
         if (!response.ok) {
