@@ -8,6 +8,7 @@ import { ChangeEvent, useState } from "react";
 //components
 import UploadFile from "./UploadFile";
 import TextField from "./TextField";
+import CountryCode from "./CountryCode";
 
 interface UsersTypes {
   username: string;
@@ -19,6 +20,7 @@ interface UsersTypes {
   website: string;
   address: string;
   telephone: string;
+  countryCode: string;
 }
 
 export default function FormTS() {
@@ -50,6 +52,7 @@ export default function FormTS() {
           website: "",
           address: "",
           telephone: "",
+          countryCode: "",
         }}
         onSubmit={(values: UsersTypes, { resetForm }) => {
           console.log(values);
@@ -226,19 +229,23 @@ export default function FormTS() {
               }
               required
             />
-            <TextField
-              label="telephone"
-              type="tel"
-              name="telephone"
-              id="telephone"
-              placeHolder="999 999 9999"
-              pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
-              value={values.telephone}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFieldValue("telephone", e.target.value)
-              }
-              required
-            />
+            <div className="telephone">
+              <CountryCode className="pad-main" />
+              <TextField
+                groupClass="pad-main"
+                label="telephone"
+                type="tel"
+                name="telephone"
+                id="telephone"
+                placeHolder="999 999 9999"
+                pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
+                value={values.telephone}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setFieldValue("telephone", e.target.value)
+                }
+                required
+              />
+            </div>
 
             <div className="container-btn">
               <button type="submit" className="btn-base btn-main">
