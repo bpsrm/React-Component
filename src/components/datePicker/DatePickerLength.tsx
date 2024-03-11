@@ -42,9 +42,7 @@ const DatePickerLength = () => {
               onClick={() => handleLabelClick("start")}
             >
               {startDate ? (
-                <p className="text-violet-main">
-                  {startDate.toLocaleDateString()}
-                </p>
+                <p className="text-blue">{startDate.toLocaleDateString()}</p>
               ) : (
                 "Start Date"
               )}
@@ -65,9 +63,7 @@ const DatePickerLength = () => {
               onClick={() => handleLabelClick("end")}
             >
               {endDate ? (
-                <p className="text-violet-main">
-                  {endDate.toLocaleDateString()}
-                </p>
+                <p className="text-blue">{endDate.toLocaleDateString()}</p>
               ) : (
                 "End Date"
               )}

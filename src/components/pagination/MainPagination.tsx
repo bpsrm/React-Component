@@ -45,9 +45,7 @@ export default function MainPagination({
           key={i}
           onClick={() => handlePageClick(i)}
           className={`mx-1 px-2 py-1 rounded-md ${
-            i === currentPage
-              ? "bg-violet-main text-white"
-              : "bg-violet-dr-main text-violet-main"
+            i === currentPage ? "bg-blue text-white" : "bg-blue-dr text-blue"
           }`}
         >
           {i}
@@ -81,7 +79,7 @@ export default function MainPagination({
             type="number"
             value={totalItems}
             onChange={(e) => setTotalItems(parseInt(e.target.value))}
-            className="mr-2 px-2 py-1 rounded-md bg-violet-dr-main text-violet-main"
+            className="mr-2 px-2 py-1 rounded-md bg-blue-dr text-blue"
           />
           <span>Total Items</span>
         </div>
@@ -91,14 +89,14 @@ export default function MainPagination({
           <button
             onClick={handleFirstPage}
             disabled={currentPage === 1}
-            className="px-2 py-1 rounded-md mr-2 bg-violet-dr-main text-violet-main"
+            className="px-2 py-1 rounded-md mr-2 bg-blue-dr text-blue"
           >
             <i className="fa-solid fa-angles-left"></i>
           </button>
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className="px-2 py-1 rounded-md mr-2 bg-violet-dr-main text-violet-main"
+            className="px-2 py-1 rounded-md mr-2 bg-blue-dr text-blue"
           >
             <i className="fa-solid fa-angle-left"></i>
           </button>
@@ -106,14 +104,14 @@ export default function MainPagination({
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
-            className="px-2 py-1 rounded-md ml-2 bg-violet-dr-main text-violet-main"
+            className="px-2 py-1 rounded-md ml-2 bg-blue-dr text-blue"
           >
             <i className="fa-solid fa-angle-right"></i>
           </button>
           <button
             onClick={handleLastPage}
             disabled={currentPage === totalPages}
-            className="px-2 py-1 rounded-md ml-2 bg-violet-dr-main text-violet-main"
+            className="px-2 py-1 rounded-md ml-2 bg-blue-dr text-blue"
           >
             <i className="fa-solid fa-angles-right"></i>
           </button>
@@ -122,7 +120,7 @@ export default function MainPagination({
           <select
             value={itemsPerPage}
             onChange={handleItemsPerPageChange}
-            className="w-20 ml-4 mr-2 px-2 py-1 rounded-md bg-violet-dr-main text-violet-main"
+            className="w-20 ml-4 mr-2 px-2 py-1 rounded-md bg-blue-dr text-blue"
           >
             <option value={10}>10</option>
             <option value={20}>20</option>

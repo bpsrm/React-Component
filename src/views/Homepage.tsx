@@ -56,7 +56,7 @@ export default function RootMain() {
         </p>
 
         <div className="card-main pad-main bg-white p-5 shadow-lg hover:shadow-xl hover:transition-all hover:ease-in-out hover:delay-200">
-          <h5 className="font-semibold text-violet-da-main">
+          <h5 className="font-semibold text-blue-da">
             <i className="fa-brands fa-github"></i> Profile
           </h5>
           {loading ? (
@@ -77,7 +77,7 @@ export default function RootMain() {
                 className="rounded-[50%]"
               />
 
-              <p className="title text-violet-da-main">{profile.name}</p>
+              <p className="title text-blue-da">{profile.name}</p>
               <span className="text-black pb-2">@{profile.login}</span>
               <span className="small-text text-gray-main">
                 <i className="fa-solid fa-location-dot"></i>
@@ -106,9 +106,7 @@ export default function RootMain() {
             <div>Error loading profile</div>
           )}
         </div>
-        <p className="text-violet-main font-bold">
-          Design & Develop by BANXDEV
-        </p>
+        <p className="text-blue-main font-bold">Design & Develop by BANXDEV</p>
       </div>
     </div>
   );

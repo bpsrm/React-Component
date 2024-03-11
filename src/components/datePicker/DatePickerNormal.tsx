@@ -19,9 +19,7 @@ const DatePickerNormal = () => {
         onClick={() => setShowCalendar(!showCalendar)}
       >
         {selectedDate ? (
-          <p className="text-violet-main">
-            {selectedDate.toLocaleDateString()}
-          </p>
+          <p className="text-blue">{selectedDate.toLocaleDateString()}</p>
         ) : (
           "Select Date"
         )}

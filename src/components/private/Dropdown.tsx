@@ -17,7 +17,7 @@ export default function Dropdown({ name, className }: DropdownProps) {
   return (
     <div className="relative inline-block w-full">
       <button
-        className={`bg-gray-dr-main hover:bg-violet-dr-main text-black hover:text-violet-main font-medium py-2 px-4 rounded flex items-center justify-between gap-3 w-full"
+        className={`bg-gray-dr-main hover:bg-blue-dr text-black hover:text-blue font-medium py-2 px-4 rounded flex items-center justify-between gap-3 w-full"
          ${className}`}
         onClick={handleShowItems}
       >
@@ -35,7 +35,7 @@ export default function Dropdown({ name, className }: DropdownProps) {
               <li key={item.id}>
                 <a
                   href={item.link}
-                  className="block px-4 py-2 text-black hover:text-violet-main hover:bg-violet-dr-main"
+                  className="block px-4 py-2 text-black hover:text-blue hover:bg-blue-dr"
                 >
                   {item.name}
                 </a>

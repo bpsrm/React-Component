@@ -29,11 +29,11 @@
 }
 
 .day {
-  @apply p-2 text-center cursor-pointer hover:bg-violet-dr-main rounded-[5px];
+  @apply p-2 text-center cursor-pointer hover:bg-blue-dr rounded-[5px];
 }
 
 .today {
-  @apply bg-violet-dr-main rounded-[5px] text-violet-main;
+  @apply bg-blue-dr rounded-[5px] text-blue;
 }
 
 .empty {
@@ -41,5 +41,5 @@
 }
 
 .inp-year-calendar {
-  @apply p-2 focus-visible:border-0 focus-visible:outline-none bg-violet-dr-main rounded-[5px] text-violet-da-main;
+  @apply p-2 focus-visible:border-0 focus-visible:outline-none bg-blue-dr rounded-[5px] text-blue-da;
 }

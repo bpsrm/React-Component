@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <header>
       <Link to="/" className="text-[24px] font-bold">
-        <span className="text-violet-main">BANX</span>DEV
+        <span className="text-blue">BANX</span>DEV
       </Link>
       <button
         className="md:hidden focus:outline-none transition-all delay-100 ease-in-out"
@@ -30,7 +30,7 @@ export default function Header() {
       <nav className="hidden md:flex md:items-center">
         <ul className="flex main-link">
           <li className="link">
-            <Link to="/" className="hover:text-violet-main">
+            <Link to="/" className="hover:text-blue">
               Home
             </Link>
           </li>
@@ -38,7 +38,7 @@ export default function Header() {
             <Link
               to="https://github.com/bpsrm/React-Component"
               target="_blank"
-              className="hover:text-violet-main"
+              className="hover:text-blue"
             >
               Source
               <i className="fa-solid fa-arrow-up-right-from-square"></i>
@@ -53,7 +53,7 @@ export default function Header() {
         <nav className="fixed inset-y-0 left-0 z-50 w-[70%] shadow-md bg-white text-black md:text-white md:hidden">
           <ul className="p-4 main-link">
             <li className="link">
-              <Link to="/" className="block hover:text-violet-main">
+              <Link to="/" className="block hover:text-blue">
                 Home
               </Link>
             </li>
@@ -61,7 +61,7 @@ export default function Header() {
               <Link
                 to="https://github.com/bpsrm/React-Component"
                 target="_blank"
-                className="block hover:text-violet-main"
+                className="block hover:text-blue"
               >
                 Source
                 <i className="fa-solid fa-arrow-up-right-from-square"></i>

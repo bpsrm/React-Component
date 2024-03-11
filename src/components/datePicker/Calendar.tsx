@@ -80,7 +80,7 @@ CalendarProps) {
         <button onClick={() => changeMonth(-1)}>
           <i className="fa-solid fa-angle-left"></i>
         </button>
-        <div className="px-4 py-2 bg-violet-dr-main rounded-[50px] text-violet-da-main">
+        <div className="px-4 py-2 bg-blue-dr rounded-[50px] text-blue-da">
           {months[month]} {year}
         </div>
         <button onClick={() => changeMonth(1)}>
