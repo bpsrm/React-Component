@@ -10,6 +10,9 @@ import typescriptIcon from "@/assets/typescript.svg";
 //types
 import { Profile } from "@/@types/global.types";
 
+//components
+import Loader from "@/components/private/Loader";
+
 export default function RootMain() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -37,7 +40,7 @@ export default function RootMain() {
     };
 
     fetchProfile();
-  }, []);
+  }, [header]);
 
   return (
     <div className="containers bg-white py-10 md:h-svh xl:h-full">
@@ -60,8 +63,8 @@ export default function RootMain() {
             <i className="fa-brands fa-github"></i> Profile
           </h5>
           {loading ? (
-            <div className="flex flex-col justify-center items-center h-max">
-              Loading...
+            <div className="flex flex-col justify-center items-center h-[250px]">
+              <Loader loading={loading} />
             </div>
           ) : profile ? (
             <Link

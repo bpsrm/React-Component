@@ -10,6 +10,10 @@ export interface NavigationItem {
   link: string;
 }
 
+export interface LoaderType {
+  loading: boolean;
+}
+
 //profile
 export interface Profile {
   name: string;
