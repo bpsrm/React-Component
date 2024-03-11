@@ -21,3 +21,9 @@ export interface Profile {
   public_repos: number;
   location: string;
 }
+
+//pagination
+export interface PaginationType {
+  totalItems?: number;
+  itemsPerPage?: number;
+}

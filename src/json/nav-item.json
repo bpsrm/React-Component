@@ -17,16 +17,21 @@
     },
     {
       "id": 4,
+      "name": "Pagination",
+      "link": "/pagination"
+    },
+    {
+      "id": 5,
       "name": "Breadcrumbs",
       "link": "/breadcrumbs"
     },
     {
-      "id": 5,
+      "id": 6,
       "name": "Dropdown",
       "link": "/dropdown"
     },
     {
-      "id": 6,
+      "id": 7,
       "name": "Convert Data",
       "link": "/convert-data"
     }
