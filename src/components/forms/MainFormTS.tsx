@@ -106,7 +106,7 @@ export default function FormTS() {
               />
               <TextField
                 groupClass="md:w-full lg:w-6/12"
-                label="confirmPassword"
+                label="repeat password"
                 type="password"
                 name="confirmPassword"
                 id="confirmPassword"
