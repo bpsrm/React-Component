@@ -3,7 +3,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      fontFamily: { sans: ['"Mukta"', "sans-serif"] },
+      fontFamily: { sans: ['"Roboto"', "sans-serif"] },
       colors: {
         black: "#191919",
         "gray-main": "#6b7280",

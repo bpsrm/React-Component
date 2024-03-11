@@ -83,7 +83,7 @@ export default function RootMain() {
               <p className="title text-blue-da">{profile.name}</p>
               <span className="text-black pb-2">@{profile.login}</span>
               <span className="small-text text-gray-main">
-                <i className="fa-solid fa-location-dot"></i>
+                <i className="fa-solid fa-location-dot pr-3"></i>
                 {profile.location}
               </span>
               <p className="text-black text-start md:text-center md:w-[70%] py-5">
