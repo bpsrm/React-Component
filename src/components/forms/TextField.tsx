@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ChangeEvent } from "react";
+
 interface TextFieldTypes {
   label: string;
   groupClass?: string;
@@ -8,7 +9,7 @@ interface TextFieldTypes {
   id: string;
   placeHolder?: string;
   value: string;
-  onChange?: any;
+  onChange?: (val: ChangeEvent<HTMLInputElement>) => void;
   required: boolean;
   maxLength?: number;
   pattern?: string;

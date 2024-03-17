@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
 
 interface Country {
@@ -18,7 +17,7 @@ export default function CountryCode({ className }: CountryType) {
     fetch("https://restcountries.com/v2/all")
       .then((response) => response.json())
       .then((data) => {
-        const codes: Country[] = data.map((country: any) => ({
+        const codes: Country[] = data.map((country: Country) => ({
           name: country.name,
           callingCodes: country.callingCodes,
         }));
@@ -30,11 +29,11 @@ export default function CountryCode({ className }: CountryType) {
       .catch((error) => console.error("Error fetching country codes:", error));
   }, []);
 
-  const handleCountryCodeChange = (
+  function handleCountryCodeChange(
     event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  ) {
     setSelectedCountryCode(event.target.value);
-  };
+  }
 
   return (
     <div className={className}>

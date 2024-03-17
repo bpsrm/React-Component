@@ -4,32 +4,28 @@ import { ChangeEvent, useState } from "react";
 import { months, days } from "@/json/calendar.json";
 
 interface CalendarProps {
-  //   calendarType?: "start" | "end";
   onSelectDate: (date: Date) => void;
 }
 
-export default function Calendar({
-  onSelectDate,
-}: //   calendarType,
-CalendarProps) {
+export default function Calendar({ onSelectDate }: CalendarProps) {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
 
-  const onChangeYear = (e: ChangeEvent<HTMLInputElement>) => {
+  function onChangeYear(e: ChangeEvent<HTMLInputElement>) {
     const newYear = parseInt(e.target.value);
     setYear(newYear);
-  };
+  }
 
-  const changeMonth = (offset: number) => {
+  function changeMonth(offset: number) {
     setMonth((month + offset + 12) % 12);
-  };
+  }
 
-  const handleDayClick = (day: number) => {
+  function handleDayClick(day: number) {
     const selectedDate = new Date(year, month, day);
     onSelectDate(selectedDate);
-  };
+  }
 
-  const renderDays = () => {
+  function renderDays() {
     const today = new Date();
     const firstDay = new Date(year, month, 1).getDay();
     const daysArray = [];
@@ -63,7 +59,7 @@ CalendarProps) {
         {day.date === 0 ? "" : day.date}
       </div>
     ));
-  };
+  }
 
   return (
     <div className="calendar">

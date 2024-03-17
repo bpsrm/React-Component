@@ -3,14 +3,14 @@ import { useState } from "react";
 //components
 import Calendar from "./Calendar";
 
-const DatePickerNormal = () => {
+export default function DatePickerNormal() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [showCalendar, setShowCalendar] = useState<boolean>(false);
 
-  const handleSelectDate = (date: Date) => {
+  function handleSelectDate(date: Date) {
     setSelectedDate(date);
     setShowCalendar(false);
-  };
+  }
 
   return (
     <div className="pad-main">
@@ -27,6 +27,4 @@ const DatePickerNormal = () => {
       {showCalendar && <Calendar onSelectDate={handleSelectDate} />}
     </div>
   );
-};
-
-export default DatePickerNormal;
+}

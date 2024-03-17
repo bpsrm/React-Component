@@ -12,26 +12,21 @@
     },
     {
       "id": 3,
-      "name": "TimePicker",
-      "link": "/time-picker"
-    },
-    {
-      "id": 4,
       "name": "Pagination",
       "link": "/pagination"
     },
     {
-      "id": 5,
+      "id": 4,
       "name": "Breadcrumbs",
       "link": "/breadcrumbs"
     },
     {
-      "id": 6,
+      "id": 5,
       "name": "Dropdown",
       "link": "/dropdown"
     },
     {
-      "id": 7,
+      "id": 6,
       "name": "Convert Data",
       "link": "/convert-data"
     }

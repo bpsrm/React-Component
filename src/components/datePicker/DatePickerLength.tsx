@@ -3,13 +3,13 @@ import { useState } from "react";
 //components
 import Calendar from "./Calendar";
 
-const DatePickerLength = () => {
+export default function DatePickerLength() {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [showStartCalendar, setShowStartCalendar] = useState<boolean>(false);
   const [showEndCalendar, setShowEndCalendar] = useState<boolean>(false);
 
-  const handleLabelClick = (calendarType: "start" | "end") => {
+  function handleLabelClick(calendarType: "start" | "end") {
     if (calendarType === "start") {
       setShowStartCalendar((prev) => !prev);
       setShowEndCalendar(false);
@@ -17,9 +17,9 @@ const DatePickerLength = () => {
       setShowEndCalendar((prev) => !prev);
       setShowStartCalendar(false);
     }
-  };
+  }
 
-  const handleSelectDate = (date: Date, calendarType: "start" | "end") => {
+  function handleSelectDate(date: Date, calendarType: "start" | "end") {
     if (calendarType === "start") {
       setStartDate(date);
       setShowStartCalendar(false);
@@ -29,7 +29,7 @@ const DatePickerLength = () => {
       setShowEndCalendar(false);
       console.log("date length (end):", date.toLocaleDateString());
     }
-  };
+  }
 
   return (
     <div>
@@ -76,6 +76,4 @@ const DatePickerLength = () => {
       </div>
     </div>
   );
-};
-
-export default DatePickerLength;
+}

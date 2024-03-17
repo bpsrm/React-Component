@@ -1,9 +1,10 @@
+import { useState } from "react";
+
 //style
 import "@/styles/forms.css";
 
 //forms
 import { Formik, Form } from "formik";
-import { ChangeEvent, useState } from "react";
 
 //components
 import UploadFile from "./UploadFile";
@@ -27,9 +28,9 @@ export default function FormTS() {
   const [passwordValidate, setPasswordValidate] = useState<string>("");
   const [imgSource, setImgSource] = useState<boolean>(false);
 
-  const handleClearImg = () => {
+  function handleClearImg() {
     imgSource ? setImgSource(false) : setImgSource(true);
-  };
+  }
 
   return (
     <div className="card-main items-center">
@@ -71,9 +72,7 @@ export default function FormTS() {
                 id="username"
                 placeHolder="John Doe"
                 value={values.username}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue("username", e.target.value)
-                }
+                onChange={(e) => setFieldValue("username", e.target.value)}
                 required
               />
               <TextField
@@ -84,9 +83,7 @@ export default function FormTS() {
                 id="email"
                 placeHolder="example@example.com"
                 value={values.email}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue("email", e.target.value)
-                }
+                onChange={(e) => setFieldValue("email", e.target.value)}
                 required
               />
             </div>
@@ -99,9 +96,7 @@ export default function FormTS() {
                 id="password"
                 placeHolder=""
                 value={values.password}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue("password", e.target.value)
-                }
+                onChange={(e) => setFieldValue("password", e.target.value)}
                 required
               />
               <TextField
@@ -112,7 +107,7 @@ export default function FormTS() {
                 id="confirmPassword"
                 placeHolder=""
                 value={values.confirmPassword}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                onChange={(e) => {
                   const confirmPassword = e.target.value;
                   if (confirmPassword === values.password) {
                     setPasswordValidate("password is matched");
@@ -164,9 +159,7 @@ export default function FormTS() {
                   id="male"
                   value="male"
                   checked={values.gender === "male"}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setFieldValue("gender", e.target.value)
-                  }
+                  onChange={(e) => setFieldValue("gender", e.target.value)}
                   required
                   className="cursor-pointer"
                 />
@@ -179,9 +172,7 @@ export default function FormTS() {
                   id="female"
                   value="female"
                   checked={values.gender === "female"}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setFieldValue("gender", e.target.value)
-                  }
+                  onChange={(e) => setFieldValue("gender", e.target.value)}
                   required
                   className="cursor-pointer"
                 />
@@ -194,9 +185,7 @@ export default function FormTS() {
                   id="other"
                   value="other"
                   checked={values.gender === "other"}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setFieldValue("gender", e.target.value)
-                  }
+                  onChange={(e) => setFieldValue("gender", e.target.value)}
                   required
                   className="cursor-pointer"
                 />
@@ -212,9 +201,7 @@ export default function FormTS() {
               id="website"
               placeHolder="https://www.google.com/"
               value={values.website}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFieldValue("website", e.target.value)
-              }
+              onChange={(e) => setFieldValue("website", e.target.value)}
               required
             />
             <TextField
@@ -224,9 +211,7 @@ export default function FormTS() {
               id="address"
               placeHolder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis neque consequuntur rem."
               value={values.address}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFieldValue("address", e.target.value)
-              }
+              onChange={(e) => setFieldValue("address", e.target.value)}
               required
             />
             <div className="telephone">
@@ -240,14 +225,12 @@ export default function FormTS() {
                 placeHolder="999 999 9999"
                 pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
                 value={values.telephone}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue("telephone", e.target.value)
-                }
+                onChange={(e) => setFieldValue("telephone", e.target.value)}
                 required
               />
             </div>
 
-            <div className="container-btn">
+            <div className="container-btn justify-evenly">
               <button type="submit" className="btn-base btn-main">
                 Confirm
               </button>

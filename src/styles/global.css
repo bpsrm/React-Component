@@ -14,7 +14,7 @@
   }
 
   .container-btn {
-    @apply w-full flex justify-evenly items-center;
+    @apply w-full flex justify-center items-center;
   }
 
   .container-title {
