@@ -6,10 +6,7 @@ interface UploadFileProps {
   setFieldValue: (field: string, value: unknown) => void;
 }
 
-export default function UploadFile({
-  onFileChange,
-  clearImage,
-}: UploadFileProps) {
+export default function UploadFile({ onFileChange, clearImage }: UploadFileProps) {
   const [imgSource, setImgSource] = useState<string | null>(null);
   const [imgFilename, setImgFilename] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -22,7 +19,6 @@ export default function UploadFile({
       setImgFilename(file.name);
     } else {
       onFileChange(null);
-
       setImgSource(null);
     }
   };
@@ -45,14 +41,12 @@ export default function UploadFile({
   return (
     <div className="input-group">
       <div className="flex justify-center items-center" onClick={uploadFile}>
-        {imgSource ? (
-          <img src={imgSource} alt="Profile Image" className="preview-img" />
-        ) : (
-          <div className="upload-area">
+        {imgSource
+          ? <img src={imgSource} alt="Profile Image" className="preview-img" />
+          : <div className="upload-area">
             <i className="fa-solid fa-image"></i>
             <span className="py-3">Upload Image</span>
-          </div>
-        )}
+          </div>}
       </div>
       <input
         type="file"
@@ -62,14 +56,14 @@ export default function UploadFile({
         onChange={handleFileChange}
         style={{ display: "none" }}
       />
-      {imgSource && (
+      {imgSource &&
         <div className="container-btn mt-3 flex flex-col">
           <p className="py-2">{imgFilename}</p>
           <button onClick={uploadFile} className="btn-base btn-main">
             Change Image
           </button>
         </div>
-      )}
+      }
     </div>
   );
 }

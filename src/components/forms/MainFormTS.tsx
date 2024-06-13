@@ -120,38 +120,21 @@ export default function FormTS() {
               />
             </div>
             <div className="lg:flex lg:w-full pad-main">
-              {values.confirmPassword && (
-                <p
-                  className={`w-full p-2 rounded-[5px] ${
-                    passwordValidate === "password is matched"
-                      ? "text-green-600 bg-green-200"
-                      : "text-red-600 bg-red-200"
-                  }`}
-                >
+              {values.confirmPassword &&
+                <p className={`w-full p-2 rounded-[5px] ${passwordValidate === "password is matched" ? "text-green-600 bg-green-200" : "text-red-600 bg-red-200"}`} >
                   {passwordValidate}
-                </p>
-              )}
+                </p>}
             </div>
-            <div
-              className={`input-group ${passwordValidate ? "pad-main" : ""}`}
-            >
+            <div className={`input-group ${passwordValidate ? "pad-main" : ""}`} >
               <UploadFile
                 setFieldValue={setFieldValue}
                 clearImage={imgSource}
-                onFileChange={(file: File | null) => {
-                  if (file) {
-                    setFieldValue("profile", file);
-                  } else {
-                    setFieldValue("profile", null);
-                  }
-                }}
+                onFileChange={(file: File | null) => file ? setFieldValue("profile", file) : setFieldValue("profile", null)}
               />
             </div>
 
             <div className="input-group">
-              <label htmlFor="gender" className="w-full">
-                gender
-              </label>
+              <label htmlFor="gender" className="w-full">gender</label>
               <div className="flex mt-2">
                 <input
                   type="radio"
@@ -163,9 +146,7 @@ export default function FormTS() {
                   required
                   className="cursor-pointer"
                 />
-                <label htmlFor="male" className="mx-2">
-                  male
-                </label>
+                <label htmlFor="male" className="mx-2">male</label>
                 <input
                   type="radio"
                   name="gender"
@@ -176,9 +157,7 @@ export default function FormTS() {
                   required
                   className="cursor-pointer"
                 />
-                <label htmlFor="female" className="mx-2">
-                  female
-                </label>
+                <label htmlFor="female" className="mx-2">female</label>
                 <input
                   type="radio"
                   name="gender"
@@ -189,9 +168,7 @@ export default function FormTS() {
                   required
                   className="cursor-pointer"
                 />
-                <label htmlFor="other" className="mx-2">
-                  other..
-                </label>
+                <label htmlFor="other" className="mx-2">other..</label>
               </div>
             </div>
             <TextField
@@ -231,16 +208,8 @@ export default function FormTS() {
             </div>
 
             <div className="container-btn justify-evenly">
-              <button type="submit" className="btn-base btn-main">
-                Confirm
-              </button>
-              <button
-                type="reset"
-                className="btn-base btn-sub"
-                onClick={handleClearImg}
-              >
-                Clear
-              </button>
+              <button type="submit" className="btn-base btn-main">Confirm</button>
+              <button type="reset" className="btn-base btn-sub" onClick={handleClearImg}>Clear</button>
             </div>
           </Form>
         )}

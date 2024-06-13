@@ -64,31 +64,17 @@ export default function Calendar({ onSelectDate }: CalendarProps) {
   return (
     <div className="calendar">
       <div className="w-full flex justify-end">
-        <input
-          type="number"
-          min={1}
-          value={year}
-          onChange={(e) => onChangeYear(e)}
-          className="inp-year-calendar w-full"
-        />
+        <input type="number" min={1} value={year} onChange={(e) => onChangeYear(e)} className="inp-year-calendar w-full" />
       </div>
       <div className="h-calendar">
         <button onClick={() => changeMonth(-1)}>
           <i className="fa-solid fa-angle-left"></i>
         </button>
-        <div className="px-4 py-2 bg-blue-dr rounded-[50px] text-blue-da">
-          {months[month]} {year}
-        </div>
-        <button onClick={() => changeMonth(1)}>
-          <i className="fa-solid fa-angle-right"></i>
-        </button>
+        <div className="px-4 py-2 bg-blue-dr rounded-[50px] text-blue-da">{months[month]} {year}</div>
+        <button onClick={() => changeMonth(1)}><i className="fa-solid fa-angle-right"></i></button>
       </div>
       <div className="days-of-week">
-        {days.map((day) => (
-          <div key={day} className="day-of-week">
-            {day}
-          </div>
-        ))}
+        {days.map((day) => <div key={day} className="day-of-week">{day}</div>)}
       </div>
       <div className="days">{renderDays()}</div>
     </div>

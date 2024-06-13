@@ -14,15 +14,8 @@ export default function DatePickerNormal() {
 
   return (
     <div className="pad-main">
-      <label
-        className="label-date flex"
-        onClick={() => setShowCalendar(!showCalendar)}
-      >
-        {selectedDate ? (
-          <p className="text-blue">{selectedDate.toLocaleDateString()}</p>
-        ) : (
-          "Select Date"
-        )}
+      <label className="label-date flex" onClick={() => setShowCalendar(!showCalendar)} >
+        {selectedDate ? <p className="text-blue">{selectedDate.toLocaleDateString()}</p> : "Select Date"}
       </label>
       {showCalendar && <Calendar onSelectDate={handleSelectDate} />}
     </div>

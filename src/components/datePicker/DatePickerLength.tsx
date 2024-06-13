@@ -36,41 +36,19 @@ export default function DatePickerLength() {
       <div className="date-group pad-main">
         <div className="md:flex w-full items-start justify-center">
           <div className="flex flex-col w-full lg:w-5/12">
-            <label
-              htmlFor="start-date"
-              className="label-date"
-              onClick={() => handleLabelClick("start")}
-            >
-              {startDate ? (
-                <p className="text-blue">{startDate.toLocaleDateString()}</p>
-              ) : (
-                "Start Date"
-              )}
+            <label htmlFor="start-date" className="label-date" onClick={() => handleLabelClick("start")} >
+              {startDate
+                ? <p className="text-blue">{startDate.toLocaleDateString()}</p>
+                : "Start Date"}
             </label>
-            {showStartCalendar && (
-              <Calendar
-                onSelectDate={(day) => handleSelectDate(day, "start")}
-              />
-            )}
+            {showStartCalendar && <Calendar onSelectDate={(day) => handleSelectDate(day, "start")} />}
           </div>
-          <p className="w-full lg:w-2/12 flex justify-center items-center">
-            To
-          </p>
+          <p className="w-full lg:w-2/12 flex justify-center items-center">To</p>
           <div className="flex flex-col w-full lg:w-5/12">
-            <label
-              htmlFor="end-date"
-              className="label-date"
-              onClick={() => handleLabelClick("end")}
-            >
-              {endDate ? (
-                <p className="text-blue">{endDate.toLocaleDateString()}</p>
-              ) : (
-                "End Date"
-              )}
+            <label htmlFor="end-date" className="label-date" onClick={() => handleLabelClick("end")} >
+              {endDate ? <p className="text-blue">{endDate.toLocaleDateString()}</p> : "End Date"}
             </label>
-            {showEndCalendar && (
-              <Calendar onSelectDate={(day) => handleSelectDate(day, "end")} />
-            )}
+            {showEndCalendar && <Calendar onSelectDate={(day) => handleSelectDate(day, "end")} />}
           </div>
         </div>
       </div>

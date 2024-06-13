@@ -16,21 +16,7 @@ interface TextFieldTypes {
   pattern?: string;
 }
 
-export default function TextField({
-  groupClass,
-  label,
-  inputClass,
-  type,
-  name,
-  id,
-  placeHolder,
-  value,
-  onChange,
-  onChangeTel,
-  required,
-  maxLength,
-  pattern,
-}: TextFieldTypes) {
+export default function TextField({ groupClass, label, inputClass, type, name, id, placeHolder, value, onChange, onChangeTel, required, maxLength, pattern }: TextFieldTypes) {
   const [formattedValue, setFormattedValue] = useState(value);
 
   const formatPhoneNumber = (input: string) => {
@@ -50,6 +36,7 @@ export default function TextField({
     const inputValue = e.target.value;
     const formattedInput = formatPhoneNumber(inputValue);
     setFormattedValue(formattedInput);
+
     if (type === "tel" && onChangeTel) {
       onChangeTel(inputValue);
     } else if (onChange) {
@@ -59,9 +46,7 @@ export default function TextField({
 
   return (
     <div className={`input-group ${groupClass}`}>
-      <label htmlFor={label} className="w-full">
-        {label}
-      </label>
+      <label htmlFor={label} className="w-full">{label}</label>
       <input
         type={type}
         name={name}

@@ -23,9 +23,7 @@ export default function RootMain() {
     const fetchProfile = async () => {
       try {
         const response = await fetch("https://api.github.com/users/bpsrm", {
-          headers: {
-            Authorization: header,
-          },
+          headers: { Authorization: header },
         });
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -50,64 +48,36 @@ export default function RootMain() {
           <span className="text-[32px]">+</span>
           <img src={typescriptIcon} alt="" className="w-[25%] md:w-[10%]" />
         </div>
-        <h1 className="font-bold text-center leading-relaxed py-5">
-          Boost Your Web Application Development <br /> with My React Components
-        </h1>
-        <p className="sub-title text-center pb-3">
-          Resource for React components in TypeScript language with tailwind CSS
-          style.
-        </p>
+        <h1 className="font-bold text-center leading-relaxed py-5">Boost Your Web Application Development <br /> with My React Components</h1>
+        <p className="sub-title text-center pb-3">Resource for React components in TypeScript language with tailwind CSS style.</p>
 
         <div className="card-main pad-main bg-white p-5 shadow-lg hover:shadow-xl hover:transition-all hover:ease-in-out hover:delay-200">
           <h5 className="font-semibold text-blue-da">
             <i className="fa-brands fa-github"></i> Profile
           </h5>
-          {loading ? (
-            <div className="flex flex-col justify-center items-center h-[250px]">
+          {loading
+            ? <div className="flex flex-col justify-center items-center h-[250px]">
               <Loader loading={loading} />
             </div>
-          ) : profile ? (
-            <Link
-              to="https://github.com/bpsrm"
-              target="_blank"
-              className="m-3 flex flex-col items-center bg-navy-dr-main p-5 rounded-[10px]"
-            >
-              <img
-                src={profile.avatar_url}
-                width={150}
-                height={150}
-                alt=""
-                className="rounded-[50%]"
-              />
+            : profile
+              ? <Link to="https://github.com/bpsrm" target="_blank" className="m-3 flex flex-col items-center bg-navy-dr-main p-5 rounded-[10px]">
+                <img src={profile.avatar_url} width={150} height={150} alt="" className="rounded-[50%]" />
 
-              <p className="title text-blue-da">{profile.name}</p>
-              <span className="text-black pb-2">@{profile.login}</span>
-              <span className="small-text text-gray-main">
-                <i className="fa-solid fa-location-dot pr-3"></i>
-                {profile.location}
-              </span>
-              <p className="text-black text-start md:text-center md:w-[70%] py-5">
-                {profile.bio}
-              </p>
-              <div className="flex flex-wrap gap-5 w-full xl:flex-nowrap">
-                <div className="w-full xl:w-4/12">
-                  <p className="profile-box w-full">
-                    Public Repos: {profile.public_repos}
-                  </p>
+                <p className="title text-blue-da">{profile.name}</p>
+                <span className="text-black pb-2">@{profile.login}</span>
+                <span className="small-text text-gray-main"><i className="fa-solid fa-location-dot pr-3"></i>{profile.location}</span>
+                <p className="text-black text-start md:text-center md:w-[70%] py-5">{profile.bio}</p>
+                <div className="flex flex-wrap gap-5 w-full xl:flex-nowrap">
+                  <div className="w-full xl:w-4/12">
+                    <p className="profile-box w-full">Public Repos: {profile.public_repos}</p>
+                  </div>
+                  <div className="flex flex-col md:flex-row w-full xl:w-8/12 gap-5">
+                    <p className="profile-box sm:w-full md:w-[50%] xl:w-4/6">Following: {profile.following}</p>
+                    <p className="profile-box sm:w-full md:w-[50%] xl:w-4/6">Followers: {profile.followers}</p>
+                  </div>
                 </div>
-                <div className="flex flex-col md:flex-row w-full xl:w-8/12 gap-5">
-                  <p className="profile-box sm:w-full md:w-[50%] xl:w-4/6">
-                    Following: {profile.following}
-                  </p>
-                  <p className="profile-box sm:w-full md:w-[50%] xl:w-4/6">
-                    Followers: {profile.followers}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ) : (
-            <div>Error loading profile</div>
-          )}
+              </Link>
+              : <div>Error loading profile</div>}
         </div>
         <p className="text-blue-main font-bold">Design & Develop by BANXDEV</p>
       </div>
