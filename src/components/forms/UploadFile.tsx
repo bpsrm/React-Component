@@ -11,18 +11,6 @@ export default function UploadFile({ onFileChange, clearImage }: UploadFileProps
   const [imgFilename, setImgFilename] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      onFileChange(file);
-      setImgSource(URL.createObjectURL(file));
-      setImgFilename(file.name);
-    } else {
-      onFileChange(null);
-      setImgSource(null);
-    }
-  };
-
   useEffect(() => {
     if (clearImage) {
       setImgSource(null);
@@ -32,11 +20,23 @@ export default function UploadFile({ onFileChange, clearImage }: UploadFileProps
     }
   }, [clearImage]);
 
-  const uploadFile = () => {
+  function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) {
+      onFileChange(file);
+      setImgSource(URL.createObjectURL(file));
+      setImgFilename(file.name);
+    } else {
+      onFileChange(null);
+      setImgSource(null);
+    }
+  }
+
+  function uploadFile() {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
-  };
+  }
 
   return (
     <div className="input-group">

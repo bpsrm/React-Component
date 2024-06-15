@@ -19,7 +19,7 @@ interface TextFieldTypes {
 export default function TextField({ groupClass, label, inputClass, type, name, id, placeHolder, value, onChange, onChangeTel, required, maxLength, pattern }: TextFieldTypes) {
   const [formattedValue, setFormattedValue] = useState(value);
 
-  const formatPhoneNumber = (input: string) => {
+  function formatPhoneNumber(input: string) {
     const cleanedInput = input.replace(/\D/g, "");
 
     let formatted = "";
@@ -30,9 +30,9 @@ export default function TextField({ groupClass, label, inputClass, type, name, i
       formatted += cleanedInput[i];
     }
     return formatted;
-  };
+  }
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     const inputValue = e.target.value;
     const formattedInput = formatPhoneNumber(inputValue);
     setFormattedValue(formattedInput);
@@ -42,7 +42,7 @@ export default function TextField({ groupClass, label, inputClass, type, name, i
     } else if (onChange) {
       onChange(e);
     }
-  };
+  }
 
   return (
     <div className={`input-group ${groupClass}`}>

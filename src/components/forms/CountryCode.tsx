@@ -36,6 +36,7 @@ export default function CountryCode({ className }: CountryType) {
       console.error("Error fetching country codes:", error);
     }
   }
+
   function handleCountryCodeChange(event: React.ChangeEvent<HTMLSelectElement>) {
     setSelectedCountryCode(event.target.value);
   }
