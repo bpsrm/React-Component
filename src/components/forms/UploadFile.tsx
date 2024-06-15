@@ -49,6 +49,7 @@ export default function UploadFile({ onFileChange, clearImage }: UploadFileProps
           </div>}
       </div>
       <input
+        accept=".jpg, .png, .jpeg, .pdf"
         type="file"
         name="profile"
         id="profile"
@@ -59,7 +60,7 @@ export default function UploadFile({ onFileChange, clearImage }: UploadFileProps
       {imgSource &&
         <div className="container-btn mt-3 flex flex-col">
           <p className="py-2">{imgFilename}</p>
-          <button onClick={uploadFile} className="btn-base btn-main">
+          <button type="button" onClick={uploadFile} className="btn-base btn-main">
             Change Image
           </button>
         </div>
