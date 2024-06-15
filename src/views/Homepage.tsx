@@ -15,28 +15,25 @@ import Loader from "@/components/private/Loader";
 
 export default function RootMain() {
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const header = import.meta.env.AUTHORIZATION;
 
   useEffect(() => {
-    const fetchProfile = async () => {
+    async function fetchProfile() {
+      setLoading(true);
       try {
-        const response = await fetch("https://api.github.com/users/bpsrm", {
-          headers: { Authorization: header },
-        });
+        const response = await fetch("https://api.github.com/users/bpsrm", { headers: { Authorization: header } });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
         setProfile(data);
-        setLoading(false);
       } catch (error) {
-        console.error("Error fetching GitHub profile:", error);
-        setLoading(false);
+        console.log(error);
       }
-    };
-
+      setLoading(false);
+    }
     fetchProfile();
   }, [header]);
 
@@ -62,7 +59,6 @@ export default function RootMain() {
             : profile
               ? <Link to="https://github.com/bpsrm" target="_blank" className="m-3 flex flex-col items-center bg-navy-dr-main p-5 rounded-[10px]">
                 <img src={profile.avatar_url} width={150} height={150} alt="" className="rounded-[50%]" />
-
                 <p className="title text-blue-da">{profile.name}</p>
                 <span className="text-black pb-2">@{profile.login}</span>
                 <span className="small-text text-gray-main"><i className="fa-solid fa-location-dot pr-3"></i>{profile.location}</span>

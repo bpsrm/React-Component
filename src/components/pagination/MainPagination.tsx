@@ -3,37 +3,32 @@ import { useState } from "react";
 //types
 import { PaginationType } from "@/@types/global.types";
 
-export default function MainPagination({
-  totalItems: defaultTotalItems = 500,
-  itemsPerPage: defaultItemsPerPage = 10,
-}: PaginationType) {
+export default function MainPagination({ totalItems: defaultTotalItems = 500, itemsPerPage: defaultItemsPerPage = 10 }: PaginationType) {
   const [totalItems, setTotalItems] = useState<number>(defaultTotalItems);
   const [itemsPerPage, setItemsPerPage] = useState<number>(defaultItemsPerPage);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-  };
+  function handleNextPrevious(type: number) {
+    if (type === 1) {
+      setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+    } else if (type === 2) {
+      setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    }
+  }
 
-  const handlePrevPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-  };
+  function handleFirstList(type: number, page?: number) {
+    if (type === 1) {
+      setCurrentPage(1);
+    } else if (type === 2) {
+      setCurrentPage(totalPages);
+    } else if (type === 3 && page) {
+      setCurrentPage(page);
+    }
+  }
 
-  const handleFirstPage = () => {
-    setCurrentPage(1);
-  };
-
-  const handleLastPage = () => {
-    setCurrentPage(totalPages);
-  };
-
-  const handlePageClick = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  const renderPageNumbers = () => {
+  function renderPageNumbers() {
     const pages = [];
     let startPage = 1;
     if (currentPage > 3) {
@@ -43,26 +38,22 @@ export default function MainPagination({
       pages.push(
         <button
           key={i}
-          onClick={() => handlePageClick(i)}
-          className={`mx-1 px-2 py-1 rounded-md ${
-            i === currentPage ? "bg-blue text-white" : "bg-blue-dr text-blue"
-          }`}
+          className={`mx-1 px-2 py-1 rounded-md ${i === currentPage ? "bg-blue text-white" : "bg-blue-dr text-blue"}`}
+          onClick={() => handleFirstList(3, i)}
         >
           {i}
         </button>
       );
     }
     return pages;
-  };
+  }
 
-  const handleItemsPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  function handleItemsPerPageChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const value = parseInt(event.target.value);
     if (!isNaN(value) && value > 0) {
       setItemsPerPage(value);
     }
-  };
+  }
 
   return (
     <div className="card-main items-center">
@@ -75,53 +66,28 @@ export default function MainPagination({
       <div className="flex justify-between items-center">
         <h6 className="w-fit">All items: {totalItems}</h6>
         <div className="flex justify-end items-center w-fit">
-          <input
-            type="number"
-            value={totalItems}
-            onChange={(e) => setTotalItems(parseInt(e.target.value))}
-            className="mr-2 px-2 py-1 rounded-md bg-blue-dr text-blue"
-          />
+          <input type="number" value={totalItems} onChange={(e) => setTotalItems(parseInt(e.target.value))} className="mr-2 px-2 py-1 rounded-md bg-blue-dr text-blue" />
           <span>Total Items</span>
         </div>
       </div>
       <div className="flex justify-between items-center mt-2 pad-main flex-wrap">
         <div className="pagination-group">
-          <button
-            onClick={handleFirstPage}
-            disabled={currentPage === 1}
-            className="px-2 py-1 rounded-md mr-2 bg-blue-dr text-blue"
-          >
+          <button onClick={() => handleFirstList(1)} disabled={currentPage === 1} className="px-2 py-1 rounded-md mr-2 bg-blue-dr text-blue" >
             <i className="fa-solid fa-angles-left"></i>
           </button>
-          <button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            className="px-2 py-1 rounded-md mr-2 bg-blue-dr text-blue"
-          >
+          <button onClick={() => handleNextPrevious(1)} disabled={currentPage === 1} className="px-2 py-1 rounded-md mr-2 bg-blue-dr text-blue" >
             <i className="fa-solid fa-angle-left"></i>
           </button>
           {renderPageNumbers()}
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className="px-2 py-1 rounded-md ml-2 bg-blue-dr text-blue"
-          >
+          <button onClick={() => handleNextPrevious(2)} disabled={currentPage === totalPages} className="px-2 py-1 rounded-md ml-2 bg-blue-dr text-blue" >
             <i className="fa-solid fa-angle-right"></i>
           </button>
-          <button
-            onClick={handleLastPage}
-            disabled={currentPage === totalPages}
-            className="px-2 py-1 rounded-md ml-2 bg-blue-dr text-blue"
-          >
+          <button onClick={() => handleFirstList(2)} disabled={currentPage === totalPages} className="px-2 py-1 rounded-md ml-2 bg-blue-dr text-blue" >
             <i className="fa-solid fa-angles-right"></i>
           </button>
         </div>
         <div className="flex items-center">
-          <select
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-            className="w-20 ml-4 mr-2 px-2 py-1 rounded-md bg-blue-dr text-blue"
-          >
+          <select value={itemsPerPage} onChange={handleItemsPerPageChange} className="w-20 ml-4 mr-2 px-2 py-1 rounded-md bg-blue-dr text-blue" >
             <option value={10}>10</option>
             <option value={20}>20</option>
             <option value={50}>50</option>

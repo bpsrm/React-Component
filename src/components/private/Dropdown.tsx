@@ -10,9 +10,9 @@ import NavItemData from "@/json/nav-item.json";
 export default function Dropdown({ name, className }: DropdownProps) {
   const [showItems, setShowItems] = useState<boolean>(false);
 
-  const handleShowItems = () => {
+  function handleShowItems() {
     setShowItems((prevState) => !prevState);
-  };
+  }
 
   return (
     <div className="relative inline-block w-full">
@@ -22,21 +22,14 @@ export default function Dropdown({ name, className }: DropdownProps) {
         onClick={handleShowItems}
       >
         <span>{name}</span>
-        {showItems ? (
-          <i className="fa-solid fa-caret-down"></i>
-        ) : (
-          <i className="fa-solid fa-caret-left"></i>
-        )}
+        {showItems ? <i className="fa-solid fa-caret-down"></i> : <i className="fa-solid fa-caret-left"></i>}
       </button>
       {showItems && (
         <div className="absolute z-10 bg-white border border-gray-300 mt-1 rounded-md shadow-lg w-full font-medium">
           <ul className="w-full">
             {NavItemData.navItem.map((item: NavigationItem) => (
               <li key={item.id}>
-                <a
-                  href={item.link}
-                  className="block px-4 py-2 text-black hover:text-blue hover:bg-blue-dr"
-                >
+                <a href={item.link} className="block px-4 py-2 text-black hover:text-blue hover:bg-blue-dr">
                   {item.name}
                 </a>
               </li>

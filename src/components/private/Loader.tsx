@@ -7,7 +7,7 @@ import { Fragment } from "react";
 export default function Loader({ loading }: LoaderType) {
   return (
     <Fragment>
-      {loading ? (
+      {loading &&
         <div className="loader">
           <div className="loader-square"></div>
           <div className="loader-square"></div>
@@ -17,9 +17,7 @@ export default function Loader({ loading }: LoaderType) {
           <div className="loader-square"></div>
           <div className="loader-square"></div>
         </div>
-      ) : (
-        ""
-      )}
+      }
     </Fragment>
   );
 }
