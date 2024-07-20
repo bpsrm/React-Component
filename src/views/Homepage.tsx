@@ -12,30 +12,22 @@ import { Profile } from "@/@types/global.types";
 
 //components
 import Loader from "@/components/private/Loader";
+import { FetchProfile } from "@/services/github/Github.Services";
 
 export default function RootMain() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const header = import.meta.env.AUTHORIZATION;
-
   useEffect(() => {
-    async function fetchProfile() {
-      setLoading(true);
-      try {
-        const response = await fetch("https://api.github.com/users/bpsrm", { headers: { Authorization: header } });
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setProfile(data);
-      } catch (error) {
-        console.log(error);
-      }
-      setLoading(false);
-    }
     fetchProfile();
-  }, [header]);
+  }, []);
+
+  async function fetchProfile() {
+    setLoading(true);
+    const res = await FetchProfile();
+    res && res.status === 200 && res.statusText === "" ? setProfile(res.data) : console.log("Network response was not ok");
+    setLoading(false);
+  }
 
   return (
     <div className="containers bg-white py-10 md:h-svh xl:h-full">

@@ -1,20 +1,5 @@
+import { TextFieldTypes } from "@/@types/forms.types";
 import { ChangeEvent, useState } from "react";
-
-interface TextFieldTypes {
-  label: string;
-  groupClass?: string;
-  inputClass?: string;
-  type: string;
-  name: string;
-  id: string;
-  placeHolder?: string;
-  value: string;
-  onChange?: (val: ChangeEvent<HTMLInputElement>) => void;
-  onChangeTel?: (val: string) => void;
-  required: boolean;
-  maxLength?: number;
-  pattern?: string;
-}
 
 export default function TextField({ groupClass, label, inputClass, type, name, id, placeHolder, value, onChange, onChangeTel, required, maxLength, pattern }: TextFieldTypes) {
   const [formattedValue, setFormattedValue] = useState(value);

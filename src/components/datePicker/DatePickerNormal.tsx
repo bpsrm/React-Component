@@ -1,6 +1,4 @@
 import { useState } from "react";
-
-//components
 import Calendar from "./Calendar";
 
 export default function DatePickerNormal() {

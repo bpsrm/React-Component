@@ -31,3 +31,9 @@ export interface PaginationType {
   totalItems?: number;
   itemsPerPage?: number;
 }
+
+//enum pagination
+export enum PaginationAction {
+  Next = 1,
+  Previous = 2,
+}

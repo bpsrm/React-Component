@@ -1,6 +1,4 @@
 import "@/styles/loader.css";
-
-//types
 import { LoaderType } from "@/@types/global.types";
 import { Fragment } from "react";
 

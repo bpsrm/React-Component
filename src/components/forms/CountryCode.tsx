@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
-
-interface Country {
-  name: string;
-  callingCodes: string[];
-  flags: { svg: string; png: string; };
-}
-
-interface CountryType {
-  className?: string;
-}
+import { Country, CountryType } from "@/@types/forms.types";
+import { GetCountryCode } from "@/services/countryCode/CountryCode.Services";
 
 export default function CountryCode({ className }: CountryType) {
   const [countryCodes, setCountryCodes] = useState<Country[]>([]);
@@ -19,21 +11,13 @@ export default function CountryCode({ className }: CountryType) {
   }, []);
 
   async function getCountryCode() {
-    try {
-      const response = await fetch("https://restcountries.com/v2/all");
-      const data = await response.json();
-
-      const codes: Country[] = data.map((country: Country) => ({
-        name: country.name,
-        callingCodes: country.callingCodes,
-        flag: country.flags,
-      }));
-
+    const res = await GetCountryCode();
+    if (res && res.status === 200 && res.statusText === "") {
+      const codes: Country[] = res.data.map((country: Country) => ({ name: country.name, callingCodes: country.callingCodes, flag: country.flags }));
       codes.sort((a, b) => a.name.localeCompare(b.name));
-
-      return setCountryCodes(codes);
-    } catch (error) {
-      console.error("Error fetching country codes:", error);
+      setCountryCodes(codes);
+    } else {
+      throw new Error("Error fetching country codes");
     }
   }
 

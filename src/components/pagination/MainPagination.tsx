@@ -1,7 +1,5 @@
 import { useState } from "react";
-
-//types
-import { PaginationType } from "@/@types/global.types";
+import { PaginationAction, PaginationType } from "@/@types/global.types";
 
 export default function MainPagination({ totalItems: defaultTotalItems = 500, itemsPerPage: defaultItemsPerPage = 10 }: PaginationType) {
   const [totalItems, setTotalItems] = useState<number>(defaultTotalItems);
@@ -10,22 +8,11 @@ export default function MainPagination({ totalItems: defaultTotalItems = 500, it
 
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  function handleNextPrevious(type: number) {
-    if (type === 1) {
-      setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-    } else if (type === 2) {
-      setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-    }
+  function handleNextPrevious(action: PaginationAction) {
+    action === PaginationAction.Next ? setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages)) : action === PaginationAction.Previous ? setCurrentPage((prevPage) => Math.max(prevPage - 1, 1)) : null;
   }
-
   function handleFirstList(type: number, page?: number) {
-    if (type === 1) {
-      setCurrentPage(1);
-    } else if (type === 2) {
-      setCurrentPage(totalPages);
-    } else if (type === 3 && page) {
-      setCurrentPage(page);
-    }
+    type === 1 ? setCurrentPage(1) : type === 2 ? setCurrentPage(totalPages) : type === 3 && page && setCurrentPage(page);
   }
 
   function renderPageNumbers() {
@@ -35,24 +22,14 @@ export default function MainPagination({ totalItems: defaultTotalItems = 500, it
       startPage = currentPage - 2;
     }
     for (let i = startPage; i <= Math.min(startPage + 4, totalPages); i++) {
-      pages.push(
-        <button
-          key={i}
-          className={`mx-1 px-2 py-1 rounded-md ${i === currentPage ? "bg-blue text-white" : "bg-blue-dr text-blue"}`}
-          onClick={() => handleFirstList(3, i)}
-        >
-          {i}
-        </button>
-      );
+      pages.push(<button key={i} className={`mx-1 px-2 py-1 rounded-md ${i === currentPage ? "bg-blue text-white" : "bg-blue-dr text-blue"}`} onClick={() => handleFirstList(3, i)} > {i} </button>);
     }
     return pages;
   }
 
   function handleItemsPerPageChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const value = parseInt(event.target.value);
-    if (!isNaN(value) && value > 0) {
-      setItemsPerPage(value);
-    }
+    !isNaN(value) && value > 0 && setItemsPerPage(value);
   }
 
   return (
@@ -75,11 +52,11 @@ export default function MainPagination({ totalItems: defaultTotalItems = 500, it
           <button onClick={() => handleFirstList(1)} disabled={currentPage === 1} className="px-2 py-1 rounded-md mr-2 bg-blue-dr text-blue" >
             <i className="fa-solid fa-angles-left"></i>
           </button>
-          <button onClick={() => handleNextPrevious(1)} disabled={currentPage === 1} className="px-2 py-1 rounded-md mr-2 bg-blue-dr text-blue" >
+          <button onClick={() => handleNextPrevious(PaginationAction.Previous)} disabled={currentPage === 1} className="px-2 py-1 rounded-md mr-2 bg-blue-dr text-blue">
             <i className="fa-solid fa-angle-left"></i>
           </button>
           {renderPageNumbers()}
-          <button onClick={() => handleNextPrevious(2)} disabled={currentPage === totalPages} className="px-2 py-1 rounded-md ml-2 bg-blue-dr text-blue" >
+          <button onClick={() => handleNextPrevious(PaginationAction.Next)} disabled={currentPage === totalPages} className="px-2 py-1 rounded-md ml-2 bg-blue-dr text-blue">
             <i className="fa-solid fa-angle-right"></i>
           </button>
           <button onClick={() => handleFirstList(2)} disabled={currentPage === totalPages} className="px-2 py-1 rounded-md ml-2 bg-blue-dr text-blue" >

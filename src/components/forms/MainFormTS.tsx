@@ -1,35 +1,31 @@
 import { useState } from "react";
-
-//style
-import "@/styles/forms.css";
-
-//forms
 import { Formik, Form } from "formik";
-
-//components
 import UploadFile from "./UploadFile";
 import TextField from "./TextField";
 import CountryCode from "./CountryCode";
-
-interface UsersTypes {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  profile: File | null;
-  gender: string;
-  website: string;
-  address: string;
-  telephone: string;
-  countryCode: string;
-}
+import { UsersTypes } from "@/@types/forms.types";
+import "@/styles/forms.css";
 
 export default function FormTS() {
   const [passwordValidate, setPasswordValidate] = useState<string>("");
-  const [imgSource, setImgSource] = useState<boolean>(false);
 
-  function handleClearImg() {
-    imgSource ? setImgSource(false) : setImgSource(true);
+  function initialValues() {
+    return {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      profile: null,
+      gender: "",
+      website: "",
+      address: "",
+      telephone: "",
+      countryCode: "",
+    };
+  }
+
+  function handelSubmit(values: UsersTypes) {
+    console.log(values);
   }
 
   return (
@@ -43,23 +39,8 @@ export default function FormTS() {
       </div>
       <Formik
         enableReinitialize={true}
-        initialValues={{
-          username: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-          profile: null,
-          gender: "",
-          website: "",
-          address: "",
-          telephone: "",
-          countryCode: "",
-        }}
-        onSubmit={(values: UsersTypes, { resetForm }) => {
-          console.log(values);
-          resetForm();
-          setImgSource(true);
-        }}
+        initialValues={initialValues()}
+        onSubmit={(values: UsersTypes, { resetForm }) => { handelSubmit(values); resetForm(); }}
       >
         {({ setFieldValue, values }) => (
           <Form>
@@ -107,29 +88,21 @@ export default function FormTS() {
                 id="confirmPassword"
                 placeHolder=""
                 value={values.confirmPassword}
-                onChange={(e) => {
-                  const confirmPassword = e.target.value;
-                  if (confirmPassword === values.password) {
-                    setPasswordValidate("password is matched");
-                  } else {
-                    setPasswordValidate("password not matched!");
-                  }
-                  setFieldValue("confirmPassword", confirmPassword);
-                }}
+                onChange={({ target: { value } }) => (setPasswordValidate(value !== values.password ? "password not matched!" : "password is matched"), setFieldValue("confirmPassword", value))}
                 required
               />
             </div>
             <div className="lg:flex lg:w-full pad-main">
               {values.confirmPassword &&
-                <p className={`w-full p-2 rounded-[5px] ${passwordValidate === "password is matched" ? "text-green-600 bg-green-200" : "text-red-600 bg-red-200"}`} >
+                <p className={`w-full p-2 rounded-[5px] ${passwordValidate !== "password is matched" ? "text-red-600 bg-red-200" : "text-green-600 bg-green-200"}`}>
                   {passwordValidate}
                 </p>}
             </div>
             <div className={`input-group ${passwordValidate ? "pad-main" : ""}`} >
               <UploadFile
                 setFieldValue={setFieldValue}
-                clearImage={imgSource}
-                onFileChange={(file: File | null) => file ? setFieldValue("profile", file) : setFieldValue("profile", null)}
+                clearImage={!values.profile}
+                onFileChange={(file: File | null) => setFieldValue("profile", file)}
               />
             </div>
 
@@ -209,11 +182,11 @@ export default function FormTS() {
 
             <div className="container-btn justify-evenly">
               <button type="submit" className="btn-base btn-main">Confirm</button>
-              <button type="reset" className="btn-base btn-sub" onClick={handleClearImg}>Clear</button>
+              <button type="reset" className="btn-base btn-sub" onClick={() => setFieldValue("profile", null)}>Clear</button>
             </div>
           </Form>
         )}
       </Formik>
-    </div>
+    </div >
   );
 }

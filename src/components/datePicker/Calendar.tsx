@@ -1,11 +1,6 @@
 import { ChangeEvent, useState } from "react";
-
-//json
 import { months, days } from "@/json/calendar.json";
-
-interface CalendarProps {
-  onSelectDate: (date: Date) => void;
-}
+import { CalendarProps } from "@/@types/datePicker.types";
 
 export default function Calendar({ onSelectDate }: CalendarProps) {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -38,10 +33,7 @@ export default function Calendar({ onSelectDate }: CalendarProps) {
 
     for (let i = 1; i <= daysInCurrentMonth; i++) {
       const currentDate = new Date(year, month, i);
-      const className =
-        currentDate.toLocaleDateString() === today.toLocaleDateString()
-          ? "day today"
-          : "day";
+      const className = currentDate.toLocaleDateString() === today.toLocaleDateString() ? "day today" : "day";
       daysArray.push({ date: i, className: className });
     }
 
@@ -51,11 +43,7 @@ export default function Calendar({ onSelectDate }: CalendarProps) {
     }
 
     return daysArray.map((day, index) => (
-      <div
-        key={index}
-        className={day.className}
-        onClick={() => handleDayClick(day.date)}
-      >
+      <div key={index} className={day.className} onClick={() => handleDayClick(day.date)} >
         {day.date === 0 ? "" : day.date}
       </div>
     ));

@@ -1,6 +1,4 @@
 import { useState } from "react";
-
-//components
 import Calendar from "./Calendar";
 
 export default function DatePickerLength() {
@@ -23,11 +21,9 @@ export default function DatePickerLength() {
     if (calendarType === "start") {
       setStartDate(date);
       setShowStartCalendar(false);
-      console.log("date length (start):", date.toLocaleDateString());
     } else {
       setEndDate(date);
       setShowEndCalendar(false);
-      console.log("date length (end):", date.toLocaleDateString());
     }
   }
 
@@ -35,17 +31,15 @@ export default function DatePickerLength() {
     <div>
       <div className="date-group pad-main">
         <div className="md:flex w-full items-start justify-center">
-          <div className="flex flex-col w-full lg:w-5/12">
-            <label htmlFor="start-date" className="label-date" onClick={() => handleLabelClick("start")} >
-              {startDate
-                ? <p className="text-blue">{startDate.toLocaleDateString()}</p>
-                : "Start Date"}
+          <div className="flex flex-col w-full lg:w-6/12">
+            <label htmlFor="start-date" className="label-date !rounded-r-none" onClick={() => handleLabelClick("start")} >
+              {startDate ? <p className="text-blue">{startDate.toLocaleDateString()}</p> : "Start Date"}
             </label>
             {showStartCalendar && <Calendar onSelectDate={(day) => handleSelectDate(day, "start")} />}
           </div>
-          <p className="w-full lg:w-2/12 flex justify-center items-center">To</p>
-          <div className="flex flex-col w-full lg:w-5/12">
-            <label htmlFor="end-date" className="label-date" onClick={() => handleLabelClick("end")} >
+          <p className="w-full lg:w-1/12 flex justify-center items-center h-fit py-2.5 px-2 bg-blue-dr text-blue-da">To</p>
+          <div className="flex flex-col w-full lg:w-6/12">
+            <label htmlFor="end-date" className="label-date !rounded-l-none" onClick={() => handleLabelClick("end")} >
               {endDate ? <p className="text-blue">{endDate.toLocaleDateString()}</p> : "End Date"}
             </label>
             {showEndCalendar && <Calendar onSelectDate={(day) => handleSelectDate(day, "end")} />}

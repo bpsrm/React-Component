@@ -8,7 +8,7 @@ export default function MainLayout() {
   return (
     <div className="container-main">
       <Header />
-      <main>
+      <main className="px-5">
         <Outlet />
       </main>
     </div>
