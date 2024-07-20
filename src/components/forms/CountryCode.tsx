@@ -26,10 +26,10 @@ export default function CountryCode({ className }: CountryType) {
   }
 
   return (
-    <div className={className}>
-      <label htmlFor="countryCode">Select Country:</label>
-      <select id="countryCode" name="countryCode" value={selectedCountryCode} onChange={handleCountryCodeChange} >
-        <option value="">Select Country</option>
+    <div className={`${className} input-group`}>
+      <label htmlFor="countryCode" className="mr-2">select country:</label>
+      <select id="countryCode" name="countryCode" className="px-2 py-1 border border-gray-400 rounded-md" value={selectedCountryCode} onChange={handleCountryCodeChange} >
+        <option value="">- เลือก -</option>
         {countryCodes.map((country) => <option key={country.name} value={country.callingCodes[0]}>{`${country.name} (+${country.callingCodes[0]})`}</option>)}
       </select>
     </div>
